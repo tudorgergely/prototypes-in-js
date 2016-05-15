@@ -1,14 +1,18 @@
-function Foo() {
-    
+var o = {
+    a: 1,
+    get a() {
+        return a;
+    },
+    set a(v) {
+        console.log(v);
+        a = v;
+    }
 }
 
-function Boo() {
-    
-}
+o.a = 2;
 
-Object.setPrototypeOf(Boo.prototype, Foo.prototype);
+var b = Object.create(o);
+b.a = 3;
 
-var a = new Boo();
-
-console.log(a instanceof Foo);
-console.log(a instanceof Boo);
+console.log(o.a);
+console.log(b.hasOwnProperty('a'))

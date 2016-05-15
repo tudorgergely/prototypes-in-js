@@ -1,15 +1,13 @@
-var person = Object.create(null);
-person.name = 'person name';
+function Foo() {
+    
+}
 
-var secondPerson = Object.create(person);
+Foo.prototype.ham = () => {
+    console.log('ham!');
+}
 
-console.log(Object.getPrototypeOf(secondPerson) === person);
+var a = new Foo();
+a.ham();
 
-person.name = 'person different name';
-
-console.log(secondPerson.name)
-
-secondPerson.name = 'second person name';
-
-console.log(secondPerson.name);
-console.log(person.name);
+console.log(Object.getPrototypeOf(a) === Foo.prototype);
+console.log(Object.getPrototypeOf(Foo) === Foo.prototype);

@@ -9,5 +9,12 @@ Foo.prototype.ham = () => {
 var a = new Foo();
 a.ham();
 
-console.log(Object.getPrototypeOf(a) === Foo.prototype);
-console.log(Object.getPrototypeOf(Foo) === Foo.prototype);
+console.log(a instanceof Foo);
+console.log(a.constructor);
+console.log(Foo.prototype.constructor);
+
+a.constructor = Array;
+
+console.log(a.constructor);
+console.log(Foo.prototype.constructor);
+console.log(a instanceof Array);

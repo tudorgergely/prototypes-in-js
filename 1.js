@@ -1,18 +1,30 @@
-var o = {
-    a: 1,
-    get a() {
-        return a;
-    },
-    set a(v) {
-        console.log(v);
-        a = v;
-    }
-}
+var a = {};
 
-o.a = 2;
+Object.defineProperty(a, 'foo', {
+    value: 'test'
+});
 
-var b = Object.create(o);
-b.a = 3;
+delete a.foo;
+console.log(a.foo);
+a.foo = '';
+console.log(a.foo);
 
-console.log(o.a);
-console.log(b.hasOwnProperty('a'))
+
+var b = Object.create(a, {
+    bar: {
+        configurable: true,
+        get: () => {
+            console.log('I will return: ' + this.bar);
+            return this.bar;
+        },
+        set: value => this.bar = value,
+    } 
+});
+b.bar = 0;
+console.log(b.bar);
+
+var c = Object.create(b);
+
+c.bar = 1;
+console.log(c.bar, b.bar);
+console.log(c.hasOwnProperty('bar'))

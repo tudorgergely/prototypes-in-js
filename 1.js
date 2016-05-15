@@ -2,19 +2,13 @@ function Foo() {
     
 }
 
-Foo.prototype.ham = () => {
-    console.log('ham!');
+function Boo() {
+    
 }
 
-var a = new Foo();
-a.ham();
+Object.setPrototypeOf(Boo.prototype, Foo.prototype);
+
+var a = new Boo();
 
 console.log(a instanceof Foo);
-console.log(a.constructor);
-console.log(Foo.prototype.constructor);
-
-a.constructor = Array;
-
-console.log(a.constructor);
-console.log(Foo.prototype.constructor);
-console.log(a instanceof Array);
+console.log(a instanceof Boo);
